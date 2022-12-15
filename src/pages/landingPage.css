@@ -14,43 +14,26 @@
 
   /* border: 1px solid red; */
 }
-.listJobs-title {
-  font-size: 24px;
-  color: #40454a;
-  font-weight: 500;
-  margin-bottom: 30px;
-}
-.jobCard {
-  margin-bottom: 20px;
-  height: 120px;
-  padding: 15px;
-  position: relative;
-}
-.jobCard-icons {
-  /* position: absolute; */
-  right: 3px;
-  bottom: 3px;
-}
-.jobCard-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.jobCard-details > p {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  /* padding-bottom: 15px; */
-  max-height: 48px;
+@media (max-width: 1500px) {
+  .landingPage-section {
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    gap: 40px;
+  }
+  .listJobs {
+    flex: 1;
+  }
 }
-.jobCard-footer {
-  /* position: absolute;
-  bottom: 3px; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  justify-items: flex-end;
-}
+/* @media screen and (max-width: 480px) {
+  .landingPage-section {
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    gap: 40px;
+  }
+  .listJobs {
+    flex: 1;
+  }
+} */

@@ -1,0 +1,36 @@
+
+.jobCard {
+    margin-bottom: 20px;
+    height: 120px;
+    padding: 15px;
+    position: relative;
+  }
+  .jobCard-icons {
+    /* position: absolute; */
+    right: 3px;
+    bottom: 3px;
+  }
+  .jobCard-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .jobCard-details > p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* padding-bottom: 15px; */
+    max-height: 48px;
+  }
+  .jobCard-footer {
+    /* position: absolute;
+    bottom: 3px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-items: flex-end;
+  }
+  

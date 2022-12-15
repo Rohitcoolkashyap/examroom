@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import "./jobCard.css";
 import { IconButton, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-export default function JobCard({ title, description, date }) {
+import { AppContext } from "../../App";
+export default function JobCard({
+  title,
+  description,
+  date,
+  deleteSelected,
+  editSelected,
+}) {
+  const { setEditJob } = useContext(AppContext);
+
   return (
     <Paper elevation={1} className="jobCard">
       <div className="jobCard-details">
@@ -13,10 +23,15 @@ export default function JobCard({ title, description, date }) {
         <h5>{date}</h5>
 
         <div className="jobCard-icons">
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              setEditJob(true);
+              editSelected();
+            }}
+          >
             <ModeEditIcon />
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton onClick={deleteSelected} aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </div>
