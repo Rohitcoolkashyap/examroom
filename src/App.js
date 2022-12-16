@@ -54,8 +54,7 @@ const initDb = () => {
 
     var tx = db.transaction("jobsList", "readwrite");
     var jobsList = tx.objectStore("jobsList");
-    console.log(jobsList);
-    JOBS_LIST.forEach((item) => jobsList.add(item));
+    // JOBS_LIST.forEach((item) => jobsList.add(item));
 
     return tx.complete;
   };
@@ -65,7 +64,7 @@ function App() {
   // Initialize DB
   const [allJobs, setAllJobs] = useState();
   const [editJob, setEditJob] = useState(false);
-  const [editSelected, setEditSelected] = useState({});
+  const [selectedJob, setSelectedJob] = useState({});
 
   useEffect(() => {
     initDb();
@@ -102,8 +101,8 @@ function App() {
 
         editJob,
         setEditJob,
-        editSelected,
-        setEditSelected,
+        selectedJob,
+        setSelectedJob,
       }}
     >
       <ThemeProvider theme={theme}>

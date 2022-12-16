@@ -4,7 +4,7 @@ import { AppContext } from "../App";
 
 export default function ListJobs() {
   // const [allJobs, setAllJobs] = useState();
-  const { idb, allJobs, getAllData, setEditSelected } = useContext(AppContext);
+  const { idb, allJobs, getAllData, setSelectedJob } = useContext(AppContext);
 
   // const getAllData = (idb) => {
   //   const dbPromise = idb.open("db", 3);
@@ -48,7 +48,7 @@ export default function ListJobs() {
       };
     };
   };
-
+  console.log(allJobs);
   return (
     <div className="listJobs">
       <h1 className="heading">Active openings</h1>
@@ -60,7 +60,7 @@ export default function ListJobs() {
               title={job.title}
               description={job.description}
               date={job.date}
-              editSelected={() => setEditSelected(job)}
+              editSelected={() => setSelectedJob(job)}
               deleteSelected={() => deleteSelected(job)}
             />
           ))

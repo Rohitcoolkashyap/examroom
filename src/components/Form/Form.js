@@ -4,13 +4,20 @@ import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import Button from "@mui/material/Button";
-
+// const now = new Date();
 export default function Form() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [value, onChange] = useState([new Date(), new Date()]);
-  const { idb, allJobs, editJob, setEditJob, getAllData, editSelected } =
-    useContext(AppContext);
+  const {
+    idb,
+    allJobs,
+    editJob,
+    setEditJob,
+    getAllData,
+    selectedJob,
+    setSelectedJob,
+  } = useContext(AppContext);
   const handleSubmit = async (event) => {
     const dbPromise = await idb.open("db", 1);
 
@@ -21,37 +28,36 @@ export default function Form() {
         var tx = db.transaction("jobsList", "readwrite");
         var jobsList = tx.objectStore("jobsList");
 
-        // console.log(addUser, editUser);
-        // console.log(addUser, editUser);
-
-        const users = jobsList.put({
-          id: allJobs.length + 1,
-          title,
-          description,
-          value,
-        });
-
-        console.log("add");
-        users.onsuccess = (query) => {
-          // setTotalJobs((prev) => prev + 1);
-          tx.oncomplete = function () {
-            db.close();
-          };
-          alert("User added!");
-          setTitle("");
-          setDescription("");
-          window.location.reload();
-          // getAllData();
-          // event.preventDefault();
-        };
-        if (editJob) {
-          console.log(editSelected);
-
+        if (!editJob) {
           const users = jobsList.put({
-            id: editSelected?.id,
+            id: allJobs.length + 1,
             title,
             description,
-            value,
+            date: value,
+          });
+
+          console.log("add");
+          users.onsuccess = (query) => {
+            // setTotalJobs((prev) => prev + 1);
+            tx.oncomplete = function () {
+              db.close();
+            };
+            alert("User added!");
+            setTitle("");
+            setDescription("");
+            // setValue([new Date(), new Date()]);
+            window.location.reload();
+            // getAllData();
+            // event.preventDefault();
+          };
+        } else if (editJob) {
+          console.log(selectedJob);
+
+          const users = jobsList.put({
+            id: selectedJob?.id,
+            title,
+            description,
+            date: value,
           });
           console.log("edit");
 
@@ -63,8 +69,9 @@ export default function Form() {
             setTitle("");
             setDescription("");
             setEditJob(false);
+            // setValue([new Date(), new Date()]);
             getAllData();
-            // setSelectedUser({});
+            setSelectedJob({});
             event.preventDefault();
           };
         }
@@ -74,7 +81,7 @@ export default function Form() {
     }
   };
   useEffect(() => {
-    let { title, description } = editSelected;
+    let { title, description } = selectedJob;
     if (editJob) {
       setTitle(title);
       setDescription(description);
