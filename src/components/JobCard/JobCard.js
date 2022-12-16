@@ -31,7 +31,6 @@ export default function JobCard({
       return null;
     }
   };
-  console.log(date);
   return (
     <Paper elevation={1} className="jobCard">
       <div className="jobCard-details">
