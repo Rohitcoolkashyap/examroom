@@ -31,6 +31,7 @@ export default function JobCard({
       return null;
     }
   };
+  console.log(date);
   return (
     <Paper elevation={1} className="jobCard">
       <div className="jobCard-details">
@@ -40,11 +41,13 @@ export default function JobCard({
         </p>
       </div>
       <div className="jobCard-footer">
-        <div className="jobCard-footer-date">
-          <span>{dateFormat(date[0], "ddd, dS mmm, yyyy")}</span>
-          <span style={{ textAlign: "center" }}>to</span>
-          <span>{dateFormat(date[1], "ddd, dS mmm, yyyy")}</span>
-        </div>
+        {date && (
+          <div className="jobCard-footer-date">
+            <span>{dateFormat(date[0], "ddd, dS mmm, yyyy")}</span>
+            <span style={{ textAlign: "center" }}>to</span>
+            <span>{dateFormat(date[1], "ddd, dS mmm, yyyy")}</span>
+          </div>
+        )}
         <div className="jobCard-icons">
           <IconButton
             onClick={() => {
