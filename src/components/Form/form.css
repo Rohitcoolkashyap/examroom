@@ -1,5 +1,5 @@
 .form {
-  height: 300px;
+  height: 307px;
   width: 350px;
   flex: 0.3;
   display: flex;
@@ -7,7 +7,9 @@
   padding: 20px;
   gap: 15px;
 }
-
+.react-daterange-picker__wrapper {
+  padding: 5px;
+}
 @media screen and (max-width: 480px) {
   .form {
     width: 90%;

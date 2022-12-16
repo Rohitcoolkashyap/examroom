@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./jobCard.css";
 import { IconButton, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -14,20 +14,37 @@ export default function JobCard({
   editSelected,
 }) {
   const { setEditJob } = useContext(AppContext);
-  console.log(date);
-  console.log(dateFormat(date[0], "dddd, dS mmmm, yyyy"));
 
+  const [ellipseText, setEllipseText] = useState(true);
+
+  const jobCardDescription = () => {
+    if (ellipseText) {
+      return {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitBoxOrient: "vertical",
+        WebkitLineClamp: 2,
+        maxHeight: "48px",
+      };
+    } else {
+      return null;
+    }
+  };
   return (
     <Paper elevation={1} className="jobCard">
       <div className="jobCard-details">
         <h1>{title}</h1>
-        <p>{description}</p>
+        <p style={jobCardDescription()} onClick={() => setEllipseText(false)}>
+          {description}
+        </p>
       </div>
       <div className="jobCard-footer">
-        <span>{dateFormat(date[0], "ddd, dS mmmm, yyyy")}</span>
-        <span>to</span>
-        <span>{dateFormat(date[1], "ddd, dS mmmm, yyyy")}</span>
-
+        <div className="jobCard-footer-date">
+          <span>{dateFormat(date[0], "ddd, dS mmm, yyyy")}</span>
+          <span style={{ textAlign: "center" }}>to</span>
+          <span>{dateFormat(date[1], "ddd, dS mmm, yyyy")}</span>
+        </div>
         <div className="jobCard-icons">
           <IconButton
             onClick={() => {

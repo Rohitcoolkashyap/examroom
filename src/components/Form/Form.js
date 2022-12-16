@@ -4,7 +4,6 @@ import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import Button from "@mui/material/Button";
-// const now = new Date();
 export default function Form() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,30 +35,22 @@ export default function Form() {
             date: value,
           });
 
-          console.log("add");
           users.onsuccess = (query) => {
-            // setTotalJobs((prev) => prev + 1);
             tx.oncomplete = function () {
               db.close();
             };
             alert("User added!");
             setTitle("");
             setDescription("");
-            // setValue([new Date(), new Date()]);
             window.location.reload();
-            // getAllData();
-            // event.preventDefault();
           };
         } else if (editJob) {
-          console.log(selectedJob);
-
           const users = jobsList.put({
             id: selectedJob?.id,
             title,
             description,
             date: value,
           });
-          console.log("edit");
 
           users.onsuccess = (query) => {
             tx.oncomplete = function () {
@@ -69,7 +60,6 @@ export default function Form() {
             setTitle("");
             setDescription("");
             setEditJob(false);
-            // setValue([new Date(), new Date()]);
             getAllData();
             setSelectedJob({});
             event.preventDefault();
@@ -107,9 +97,18 @@ export default function Form() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <DateRangePicker onChange={onChange} value={value} />
+        <DateRangePicker
+          className="date-picker"
+          onChange={onChange}
+          value={value}
+        />
 
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button
+          style={{ backgroundColor: "#64748B" }}
+          size="large"
+          variant="contained"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </Paper>

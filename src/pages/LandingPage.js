@@ -8,7 +8,6 @@ export default function LandingPage() {
     <div className="landingPage">
       <Header />
       <div className="landingPage-section">
-      
         <Form />
         <ListJobs />
       </div>

@@ -23,7 +23,6 @@ export default function Header() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Instahyre
         </Typography>
-        {/* <Button color="inherit">contact</Button> */}
       </Toolbar>
     </AppBar>
   );

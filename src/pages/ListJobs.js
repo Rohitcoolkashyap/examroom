@@ -1,38 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import JobCard from "../components/JobCard/JobCard";
 import { AppContext } from "../App";
 
 export default function ListJobs() {
-  // const [allJobs, setAllJobs] = useState();
   const { idb, allJobs, getAllData, setSelectedJob } = useContext(AppContext);
 
-  // const getAllData = (idb) => {
-  //   const dbPromise = idb.open("db", 3);
-  //   dbPromise.onsuccess = () => {
-  //     const db = dbPromise.result;
-
-  //     var tx = db.transaction("jobsList", "readonly");
-  //     var jobsList = tx.objectStore("jobsList");
-  //     const users = jobsList.getAll();
-
-  //     users.onsuccess = (query) => {
-  //       setAllJobs(query.srcElement.result);
-  //       setTotalJobs(query.srcElement.result?.length);
-  //     };
-
-  //     tx.oncomplete = function () {
-  //       db.close();
-  //     };
-  //   };
-  // };
-
   const deleteSelected = (job) => {
-    console.log(job);
     const dbPromise = idb.open("db", 1);
 
     dbPromise.onsuccess = function () {
       const db = dbPromise.result;
-      console.log(db);
 
       var tx = db.transaction("jobsList", "readwrite");
       var jobsList = tx.objectStore("jobsList");
@@ -48,12 +25,11 @@ export default function ListJobs() {
       };
     };
   };
-  console.log(allJobs);
   return (
     <div className="listJobs">
       <h1 className="heading">Active openings</h1>
       <div>
-        {allJobs ? (
+        {allJobs && allJobs?.length != 0 ? (
           allJobs.map((job) => (
             <JobCard
               key={job.id}
@@ -65,7 +41,7 @@ export default function ListJobs() {
             />
           ))
         ) : (
-          <div>Empty!!</div>
+          <div className="listJobs-empty">Empty!!</div>
         )}
       </div>
     </div>

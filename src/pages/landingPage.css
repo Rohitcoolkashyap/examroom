@@ -5,14 +5,9 @@
   margin-top: 40px;
   display: flex;
   column-gap: 5rem;
-  /* align-items: center; */
-  /* justify-content: space-around; */
-  /* border: 2px solid black; */
 }
 .listJobs {
   flex: 0.7;
-
-  /* border: 1px solid red; */
 }
 
 @media (max-width: 1500px) {
@@ -25,15 +20,7 @@
   .listJobs {
     flex: 1;
   }
+  .listJobs-empty {
+    text-align: center;
+  }
 }
-/* @media screen and (max-width: 480px) {
-  .landingPage-section {
-    flex-direction: column;
-    width: 90%;
-    height: 100%;
-    gap: 40px;
-  }
-  .listJobs {
-    flex: 1;
-  }
-} */
